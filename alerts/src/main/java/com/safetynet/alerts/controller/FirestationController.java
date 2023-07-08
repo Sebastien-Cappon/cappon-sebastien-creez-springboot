@@ -33,7 +33,7 @@ public class FirestationController {
 	private static final Logger logger = LoggerFactory.getLogger(FirestationController.class);
 
 	@Autowired
-	IFirestationService iFirestationService;
+	private IFirestationService iFirestationService;
 
 	/**
 	 * A <code>GetMapping</code> method on the <code>/firestations</code> URI which
