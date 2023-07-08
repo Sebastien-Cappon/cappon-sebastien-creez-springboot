@@ -1,0 +1,46 @@
+body
+{
+	margin: 0 5%;
+	
+	font-family: "Roboto", sans-serif;
+	font-size: 1em;
+	color: #313842;
+	
+	background-color: #f3f3f3;
+}
+
+img
+{
+	display: block;
+	margin: 1em auto;
+}
+
+h1, p
+{
+	text-align: center;	
+}
+
+h2
+{
+	margin-top: 2em;
+}
+
+table
+{
+	width: 90%;
+	margin: 0 auto;
+	padding: 15px;
+	
+	font-family: Arial, sans-serif;
+	font-size: 0.8em;
+	color: #f3f3f3;
+	
+	border-radius: 3px;
+	box-shadow: inset 1px 1px 3px #000;
+	background-color: #313842;
+}
+
+table a
+{
+	color: #f3f3f3;
+}

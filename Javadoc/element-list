@@ -1,0 +1,9 @@
+com.safetynet.alerts
+com.safetynet.alerts.config
+com.safetynet.alerts.constants
+com.safetynet.alerts.controller
+com.safetynet.alerts.dto
+com.safetynet.alerts.logger
+com.safetynet.alerts.model
+com.safetynet.alerts.repository
+com.safetynet.alerts.service

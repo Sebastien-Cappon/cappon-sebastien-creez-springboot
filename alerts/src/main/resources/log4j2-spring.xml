@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-25c{1} : %m%n" />
+        </Console>
+
+        <RollingFile name="ErrorLogFiles" fileName="./logs/1-error-safetynet-alerts.log" filePattern="./logs/$${date:yyyy-MM}/1-error/%d{yyyyMMdd}-%i-error-safetynet-alerts.log.gz">
+			<LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-20c{1} : %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="WarnLogFiles" fileName="./logs/2-warn-safetynet-alerts.log" filePattern="./logs/$${date:yyyy-MM}/2-warn/%d{yyyyMMdd}-%i-warn-safetynet-alerts.log.gz">
+			<LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-20c{1} : %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="InfoLogFiles" fileName="./logs/3-info-safetynet-alerts.log" filePattern="./logs/$${date:yyyy-MM}/3-info/%d{yyyyMMdd}-%i-info-safetynet-alerts.log.gz">
+			<LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-20c{1} : %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="DebugLogFiles" fileName="./logs/4-debug-safetynet-alerts.log" filePattern="./logs/$${date:yyyy-MM}/4-debug/%d{yyyyMMdd}-%i-debug-safetynet-alerts.log.gz">
+			<LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-20c{1} : %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="TraceLogFiles" fileName="./logs/5-trace-safetynet-alerts.log" filePattern="./logs/$${date:yyyy-MM}/5-trace/%d{yyyyMMdd}-%i-trace-safetynet-alerts.log.gz">
+			<LevelRangeFilter minLevel="TRACE" maxLevel="TRACE" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-20c{1} : %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="CompleteLogFiles" fileName="./logs/safetynet-alerts.log" filePattern="./logs/$${date:yyyy-MM}/complete/%d{yyyyMMdd}-%i-safetynet-alerts.log.gz">
+			<PatternLayout>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}][%-5p] %-20c{1} : %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root>
+            <AppenderRef ref="ErrorLogFiles" />
+            <AppenderRef ref="WarnLogFiles" />
+            <AppenderRef ref="InfoLogFiles" />
+            <AppenderRef ref="DebugLogFiles" />
+            <AppenderRef ref="TraceLogFiles" />
+            <AppenderRef ref="CompleteLogFiles" level="trace" />
+            <AppenderRef ref="Console" level="debug" />
+        </Root>
+        
+        <Logger name="com.safetynet" level="trace"></Logger>
+    </Loggers>
+</Configuration>
