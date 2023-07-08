@@ -80,7 +80,7 @@ public class MedicalRecordControllerTest {
 		when(medicalRecordService.getMedicalRecordByFirstNameAndLastName(any(String.class), any(String.class)))
 			.thenReturn(medicalRecordResponse);
 		
-		mockMvc.perform(get("/medicalRecord/{firstName}-{lastName}", "Gregory", "House").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/medicalRecord/{firstName}/{lastName}", "Gregory", "House").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.firstName").value("Gregory"))
 			.andExpect(jsonPath("$.lastName").value("House"))
@@ -94,7 +94,7 @@ public class MedicalRecordControllerTest {
 		when(medicalRecordService.getMedicalRecordByFirstNameAndLastName(any(String.class), any(String.class)))
 			.thenReturn(null);
 		
-		mockMvc.perform(get("/medicalRecord/{firstName}-{lastName}", "Michael", "Scott").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/medicalRecord/{firstName}/{lastName}", "Michael", "Scott").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isNoContent());
 	}
 
@@ -152,7 +152,7 @@ public class MedicalRecordControllerTest {
 		when(medicalRecordService.updateMedicalRecord(any(String.class), any(String.class), any(MedicalRecord.class)))
 			.thenReturn(medicalRecordResponse);
 
-		mockMvc.perform(put("/medicalRecord/{firstName}-{lastName}", "Gregory", "House")
+		mockMvc.perform(put("/medicalRecord/{firstName}/{lastName}", "Gregory", "House")
 				.content(objectMapper.writeValueAsString(medicalRecordResponse))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
@@ -170,7 +170,7 @@ public class MedicalRecordControllerTest {
 		when(medicalRecordService.updateMedicalRecord(any(String.class), any(String.class), any(MedicalRecord.class)))
 			.thenReturn(null);
 
-		mockMvc.perform(put("/medicalRecord/{firstName}-{lastName}", "Gregory", "House")
+		mockMvc.perform(put("/medicalRecord/{firstName}/{lastName}", "Gregory", "House")
 				.content(objectMapper.writeValueAsString(medicalRecordResponse))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
@@ -179,7 +179,7 @@ public class MedicalRecordControllerTest {
 
 	@Test
 	public void deleteMedicalRecord_shouldReturnNoContent() throws Exception {
-		mockMvc.perform(delete("/medicalRecord/{firstName}-{lastName}", "Gregory", "House"))
+		mockMvc.perform(delete("/medicalRecord/{firstName}/{lastName}", "Gregory", "House"))
 			.andExpect(status().isNoContent());
 	}
 }

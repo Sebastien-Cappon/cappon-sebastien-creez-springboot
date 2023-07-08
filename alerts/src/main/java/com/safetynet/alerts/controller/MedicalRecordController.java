@@ -63,7 +63,7 @@ public class MedicalRecordController {
 	 * 
 	 * @return A <code>MedicalRecord</code> and a status code.
 	 */
-	@GetMapping("/medicalRecord/{firstName}-{lastName}")
+	@GetMapping("/medicalRecord/{firstName}/{lastName}")
 	public ResponseEntity<MedicalRecord> getMedicalRecordByFirstNameAndLastName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
 		MedicalRecord medicalRecord = iMedicalRecordService.getMedicalRecordByFirstNameAndLastName(firstName, lastName);
 
@@ -113,7 +113,7 @@ public class MedicalRecordController {
 	 * 
 	 * @return A <code>MedicalRecord</code> and a status code.
 	 */
-	@PutMapping("/medicalRecord/{firstName}-{lastName}")
+	@PutMapping("/medicalRecord/{firstName}/{lastName}")
 	public ResponseEntity<MedicalRecord> updateMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName, @RequestBody MedicalRecord update) {
 		MedicalRecord medicalRecordUpdated = iMedicalRecordService.updateMedicalRecord(firstName, lastName, update);
 
@@ -132,7 +132,7 @@ public class MedicalRecordController {
 	 * 
 	 * @return a status code 204.
 	 */
-	@DeleteMapping("medicalRecord/{firstName}-{lastName}")
+	@DeleteMapping("medicalRecord/{firstName}/{lastName}")
 	public ResponseEntity<Void> deleteMedicalRecord(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
 		iMedicalRecordService.deleteMedicalRecord(firstName, lastName);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

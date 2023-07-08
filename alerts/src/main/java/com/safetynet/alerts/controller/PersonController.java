@@ -63,7 +63,7 @@ public class PersonController {
 	 * 
 	 * @return A <code>Person</code> and a status code.
 	 */
-	@GetMapping("/person/{firstName}-{lastName}")
+	@GetMapping("/person/{firstName}/{lastName}")
 	public ResponseEntity<Person> getPersonByFirstNameAndLastName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
 		Person person = iPersonService.getPersonByFirstNameAndLastName(firstName, lastName);
 
@@ -113,7 +113,7 @@ public class PersonController {
 	 * 
 	 * @return A <code>Person</code> and a status code.
 	 */
-	@PutMapping("/person/{firstName}-{lastName}")
+	@PutMapping("/person/{firstName}/{lastName}")
 	public ResponseEntity<Person> updatePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName, @RequestBody Person update) {
 		Person personUpdated = iPersonService.updatePerson(firstName, lastName, update);
 
@@ -132,7 +132,7 @@ public class PersonController {
 	 * 
 	 * @return a status code 204.
 	 */
-	@DeleteMapping("/person/{firstName}-{lastName}")
+	@DeleteMapping("/person/{firstName}/{lastName}")
 	public ResponseEntity<Void> deletePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
 		iPersonService.deletePerson(firstName, lastName);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

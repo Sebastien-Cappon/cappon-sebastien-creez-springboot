@@ -75,7 +75,7 @@ public class PersonControllerTest {
 		when(personService.getPersonByFirstNameAndLastName(any(String.class), any(String.class)))
 			.thenReturn(PersonResponse);
 		
-		mockMvc.perform(get("/person/{firstName}-{lastName}", "Michael", "Scott").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/person/{firstName}/{lastName}", "Michael", "Scott").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.firstName").value("Micheal"))
 			.andExpect(jsonPath("$.lastName").value("Scott"))
@@ -91,7 +91,7 @@ public class PersonControllerTest {
 		when(personService.getPersonByFirstNameAndLastName(any(String.class), any(String.class)))
 			.thenReturn(null);
 		
-		mockMvc.perform(get("/person/{firstName}-{lastName}", "Sheldon", "Cooper").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/person/{firstName}/{lastName}", "Sheldon", "Cooper").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isNoContent());
 	}
 
@@ -145,7 +145,7 @@ public class PersonControllerTest {
 		when(personService.updatePerson(any(String.class), any(String.class), any(Person.class)))
 			.thenReturn(PersonResponse);
 		
-		mockMvc.perform(put("/person/{firstName}-{lastName}", "Michael", "Scott")
+		mockMvc.perform(put("/person/{firstName}/{lastName}", "Michael", "Scott")
 				.content(objectMapper.writeValueAsString(PersonResponse))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
@@ -164,7 +164,7 @@ public class PersonControllerTest {
 		when(personService.updatePerson(any(String.class), any(String.class), any(Person.class)))
 			.thenReturn(null);
 		
-		mockMvc.perform(put("/person/{firstName}-{lastName}", "Michael", "Scott")
+		mockMvc.perform(put("/person/{firstName}/{lastName}", "Michael", "Scott")
 				.content(objectMapper.writeValueAsString(PersonResponse))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
@@ -173,7 +173,7 @@ public class PersonControllerTest {
 
 	@Test
 	public void deletePerson_shouldReturnNoContent() throws Exception {
-		mockMvc.perform(delete("/person/{firstName}-{lastName}", "Michael", "Scott"))
+		mockMvc.perform(delete("/person/{firstName}/{lastName}", "Michael", "Scott"))
 			.andExpect(status().isNoContent());
 	}
 }
